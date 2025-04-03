@@ -16,11 +16,12 @@ namespace Platformer_Game
             coinPictureBox.Width = 10;
             coinPictureBox.Height = 10;
             coinPictureBox.BackColor = Color.Gold;
+            coinPictureBox.Tag = "coin";
         }
 
-        public void drawTo(Form F)
+        public void drawTo(Control parent)
         {
-            F.Controls.Add(coinPictureBox);
+            parent.Controls.Add(coinPictureBox);
         }
 
         public Rectangle getBounds()
@@ -31,6 +32,13 @@ namespace Platformer_Game
         public void setPos(int x, int y)
         {
             coinPictureBox.Location = new Point(x, y);
+        }
+        public void Dispose()
+        {
+            if (coinPictureBox != null)
+            {
+                coinPictureBox.Dispose();
+            }
         }
     }
 }
