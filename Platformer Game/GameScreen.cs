@@ -236,8 +236,6 @@ namespace Platformer_Game
             {
                 hero.Left = hero.Left - heroSpeed;
             }
-
-
         }
     }
 }
