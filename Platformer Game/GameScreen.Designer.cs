@@ -31,12 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.hero = new System.Windows.Forms.PictureBox();
             this.groundPictureBox = new System.Windows.Forms.PictureBox();
-            this.upTimer = new System.Windows.Forms.Timer(this.components);
-            this.rightTimer = new System.Windows.Forms.Timer(this.components);
-            this.leftTimer = new System.Windows.Forms.Timer(this.components);
             this.scoreLabel = new System.Windows.Forms.Label();
-            this.gameLoopTimer = new System.Windows.Forms.Timer(this.components);
             this.gravityTimer = new System.Windows.Forms.Timer(this.components);
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.hero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -59,21 +56,6 @@
             this.groundPictureBox.TabIndex = 3;
             this.groundPictureBox.TabStop = false;
             // 
-            // upTimer
-            // 
-            this.upTimer.Interval = 10;
-            this.upTimer.Tick += new System.EventHandler(this.upTimer_Tick);
-            // 
-            // rightTimer
-            // 
-            this.rightTimer.Interval = 10;
-            this.rightTimer.Tick += new System.EventHandler(this.rightTimer_Tick);
-            // 
-            // leftTimer
-            // 
-            this.leftTimer.Interval = 10;
-            this.leftTimer.Tick += new System.EventHandler(this.leftTimer_Tick);
-            // 
             // scoreLabel
             // 
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
@@ -84,17 +66,17 @@
             this.scoreLabel.TabIndex = 5;
             this.scoreLabel.Text = "Score: 0";
             // 
-            // gameLoopTimer
-            // 
-            this.gameLoopTimer.Enabled = true;
-            this.gameLoopTimer.Interval = 10;
-            this.gameLoopTimer.Tick += new System.EventHandler(this.gameLoopTimer_Tick);
-            // 
             // gravityTimer
             // 
             this.gravityTimer.Enabled = true;
             this.gravityTimer.Interval = 10;
             this.gravityTimer.Tick += new System.EventHandler(this.gravityTimer_Tick);
+            // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // GameScreen
             // 
@@ -104,11 +86,12 @@
             this.Controls.Add(this.hero);
             this.Controls.Add(this.groundPictureBox);
             this.Controls.Add(this.scoreLabel);
+            this.DoubleBuffered = true;
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(479, 515);
-            this.Load += new System.EventHandler(this.GameScreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.hero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundPictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -119,11 +102,8 @@
 
         private System.Windows.Forms.PictureBox hero;
         private System.Windows.Forms.PictureBox groundPictureBox;
-        private System.Windows.Forms.Timer upTimer;
-        private System.Windows.Forms.Timer rightTimer;
-        private System.Windows.Forms.Timer leftTimer;
         private System.Windows.Forms.Label scoreLabel;
-        private System.Windows.Forms.Timer gameLoopTimer;
         private System.Windows.Forms.Timer gravityTimer;
+        private System.Windows.Forms.Timer gameTimer;
     }
 }

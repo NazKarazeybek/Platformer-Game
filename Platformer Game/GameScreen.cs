@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,20 +14,29 @@ namespace Platformer_Game
 {
     public partial class GameScreen : UserControl
     {
-        bool isJumping = false;
+        //control variables
+        bool wPressed = false;
+        bool aPressed = false;
+        bool sPressed = false;
+        bool dPressed = false;
+
+        //hero speed
+        int heroSpeed = 10;
+
         List<Coin> cList = new List<Coin>(); //list to hold all coins
 
         int score; //tracking score
         public GameScreen()
         {
             InitializeComponent();
+            CreateCoins();
         }
 
         //reasoning for timers is because the movement would be worse
         private void gravityTimer_Tick(object sender, EventArgs e)
         {
             //Prevent the hero from going below the screen
-            if (!hero.Bounds.IntersectsWith(groundPictureBox.Bounds) && !isJumping)
+            if (!hero.Bounds.IntersectsWith(groundPictureBox.Bounds) && !wPressed)
             {
                 //Check if the hero is still within the bottom boundary of the screen
                 if (hero.Bottom < this.ClientSize.Height)
@@ -39,67 +50,46 @@ namespace Platformer_Game
             }
         }
 
-        private void upTimer_Tick(object sender, EventArgs e)
-        {
-            //Prevent the hero from going off the top of the screen
-            if (hero.Top > 0)
-            {
-                hero.Top -= 10; //move hero up
-                isJumping = true;  
-            }
-        }
-
-        private void rightTimer_Tick(object sender, EventArgs e)
-        {
-            //Prevent the hero from going off the right side of the screen
-            if (hero.Right < this.ClientSize.Width)
-            {
-                hero.Left += 10;
-            }
-        }
-
-        private void leftTimer_Tick(object sender, EventArgs e)
-        {
-            //Prevent the hero from going off the left side of the screen
-            if (hero.Left > 0)
-            {
-                hero.Left -= 10;
-            }
-        }
 
         private void GameScreen_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            switch (e.KeyCode)
             {
-                upTimer.Start();
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                rightTimer.Start();
-            } 
-            else if (e.KeyCode == Keys.Left){
-                leftTimer.Start();
+                case Keys.W:
+                    wPressed = true;
+                    break;
+                case Keys.A:
+                    aPressed = true;
+                    break;
+                case Keys.S:
+                    sPressed = true;
+                    break;
+                case Keys.D:
+                    dPressed = true;
+                    break;
             }
         }
 
         private void GameScreen_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)
+            switch (e.KeyCode)
             {
-                upTimer.Stop();
-                isJumping  = false;
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                rightTimer.Stop();
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                leftTimer.Stop();
+                case Keys.W:
+                    wPressed = false;
+                    break;
+                case Keys.A:
+                    aPressed = false;
+                    break;
+                case Keys.S:
+                    sPressed = false;
+                    break;
+                case Keys.D:
+                    dPressed = false;
+                    break;
             }
         }
 
-        private void GameScreen_Load(object sender, EventArgs e)
+        public void CreateCoins()
         {
             Coin c1 = new Coin();
             c1.drawTo(this);
@@ -227,18 +217,27 @@ namespace Platformer_Game
             c25.setPos(329, 183);
         }
 
-        private void gameLoopTimer_Tick(object sender, EventArgs e)
+        private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //Look through c list
-            foreach (Coin c in cList)
+            //move hero
+            if (wPressed == true)
             {
-                if (hero.Bounds.IntersectsWith(c.getBounds()))
-                {
-                    c.setPos(1001, 1001);
-                    score++;
-                    scoreLabel.Text = "Score: " + score;
-                }
+                hero.Top = hero.Top - heroSpeed;
             }
+            if (sPressed == true)
+            {
+                hero.Top = hero.Top + heroSpeed;
+            }
+            if (dPressed == true)
+            {
+                hero.Left = hero.Left + heroSpeed;
+            }
+            if (aPressed == true)
+            {
+                hero.Left = hero.Left - heroSpeed;
+            }
+
+
         }
     }
 }
