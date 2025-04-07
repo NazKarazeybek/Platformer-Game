@@ -33,12 +33,10 @@ namespace Platformer_Game
         {
             coinPictureBox.Location = new Point(x, y);
         }
-        public void Dispose()
+        // Method to make the coin invisible (without removing it)
+        public void hideCoin()
         {
-            if (coinPictureBox != null)
-            {
-                coinPictureBox.Dispose();
-            }
+            coinPictureBox.Visible = false;
         }
     }
 }

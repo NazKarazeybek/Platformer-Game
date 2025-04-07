@@ -34,6 +34,7 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.gravityTimer = new System.Windows.Forms.Timer(this.components);
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.winLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.hero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -41,7 +42,7 @@
             // hero
             // 
             this.hero.BackColor = System.Drawing.Color.Black;
-            this.hero.Location = new System.Drawing.Point(208, 432);
+            this.hero.Location = new System.Drawing.Point(212, 398);
             this.hero.Name = "hero";
             this.hero.Size = new System.Drawing.Size(40, 40);
             this.hero.TabIndex = 4;
@@ -50,9 +51,9 @@
             // groundPictureBox
             // 
             this.groundPictureBox.BackColor = System.Drawing.Color.LimeGreen;
-            this.groundPictureBox.Location = new System.Drawing.Point(0, 469);
+            this.groundPictureBox.Location = new System.Drawing.Point(0, 435);
             this.groundPictureBox.Name = "groundPictureBox";
-            this.groundPictureBox.Size = new System.Drawing.Size(479, 46);
+            this.groundPictureBox.Size = new System.Drawing.Size(479, 80);
             this.groundPictureBox.TabIndex = 3;
             this.groundPictureBox.TabStop = false;
             // 
@@ -78,11 +79,23 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // winLabel
+            // 
+            this.winLabel.BackColor = System.Drawing.Color.LimeGreen;
+            this.winLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winLabel.Location = new System.Drawing.Point(111, 435);
+            this.winLabel.Name = "winLabel";
+            this.winLabel.Size = new System.Drawing.Size(243, 40);
+            this.winLabel.TabIndex = 6;
+            this.winLabel.Text = "YOU WON!";
+            this.winLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.Controls.Add(this.winLabel);
             this.Controls.Add(this.hero);
             this.Controls.Add(this.groundPictureBox);
             this.Controls.Add(this.scoreLabel);
@@ -91,7 +104,6 @@
             this.Size = new System.Drawing.Size(479, 515);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.hero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groundPictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -105,5 +117,6 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Timer gravityTimer;
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Label winLabel;
     }
 }

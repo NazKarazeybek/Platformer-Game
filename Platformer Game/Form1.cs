@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Platformer_Game
 {
@@ -17,6 +18,10 @@ namespace Platformer_Game
         {
             InitializeComponent();//open menu screen when the program starts
             ChangeScreen(this, new MenuScreen());
+
+            //play sound for menu screen
+            SoundPlayer playSound = new SoundPlayer(Properties.Resources.menuScreenSound);
+            playSound.Play();
         }
 
         /// <summary>

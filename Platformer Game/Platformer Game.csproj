@@ -84,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -97,6 +98,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clickSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coinSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuScreenSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gameScreenSound.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
