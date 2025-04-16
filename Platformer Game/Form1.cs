@@ -24,11 +24,8 @@ namespace Platformer_Game
             playSound.Play();
         }
 
-        /// <summary>
         /// Opens a new screen and closes previous screen if one exists
-        /// </summary>
-        /// <param name="sender">Either the form or a UserControl: (this)</param>
-        /// <param name="next">The UserControl to open: new UserControl()</param>
+
         public static void ChangeScreen(object sender, UserControl next)
         {
             Form f; // will either be the sender or parent of sender
